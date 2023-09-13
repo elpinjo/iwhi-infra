@@ -57,7 +57,7 @@ kind: Service
 metadata:
   labels:
     app: "elasticsearch"
-  name: "elasticsearch-service"
+  name: "elastic"
   namespace: "swag-infra"
 spec: 
   ports:
