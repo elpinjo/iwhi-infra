@@ -23,7 +23,7 @@ spec:
               name: "realm-port"
           volumeMounts:
             - name: license-volume
-              mountPath: /UniversalMessaging/server/umserver/licence/licence.xml
+              mountPath: /opt/softwareag/UniversalMessaging/server/umserver/licence/licence.xml
               subPath: licence.xml
       imagePullSecrets:
         - name: regcred
@@ -46,3 +46,17 @@ spec:
   selector:
     app: "universal-messaging"
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "um-external"
+  namespace: "swag-infra"
+spec: 
+  ports:
+    - name: um-realm
+      port: 9000
+      targetPort: "realm-port-lb"
+  selector:
+    app: "universal-messaging"
+  type: LoadBalancer
