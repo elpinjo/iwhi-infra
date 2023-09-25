@@ -39,9 +39,6 @@ spec:
       imagePullSecrets:
         - name: regcred
       volumes:
-        - name: elastic-volume
-          persistentVolumeClaim:
-            claimName: elastic-storage
         - name: license-volume
           configMap:
             name: "apigatewaylicense"
