@@ -51,6 +51,9 @@ metadata:
   namespace: "swag-infra"
 spec: 
   ports:
+    - name: api
+      port: 80
+      targetPort: "admin-port"
     - name: gateway-ui
       port: 9072
       targetPort: "gateway-ui-port"
