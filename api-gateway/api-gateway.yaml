@@ -57,6 +57,9 @@ spec:
     - name: gateway-ui
       port: 9072
       targetPort: "gateway-ui-port"
+    - name: api-secure
+      port: 443
+      targetPort: "secure-port"
   selector:
     app: "apigateway"
   type: LoadBalancer

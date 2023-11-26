@@ -1,0 +1,43 @@
+---
+kind: "Deployment"
+apiVersion: "apps/v1"
+metadata:
+  name: "devportal"
+  namespace: "swag-infra"
+  labels:
+    app: "devportal"
+spec:
+  selector:
+    matchLabels:
+      app: "devportal" 
+  template: 
+    metadata:
+      labels:
+        app: "devportal"
+    spec:
+      containers:
+        - name: "devportal"
+          image: "sagcr.azurecr.io/devportal:10.15"
+          ports:
+            - containerPort: 8083
+              name: "public-port"
+          env:
+            - name: "SPRING_ELASTICSEARCH_REST_URIS"
+              value: "http://elastic:9200"
+      imagePullSecrets:
+        - name: regcred
+  replicas: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "devportal"
+  namespace: "swag-infra"
+spec: 
+  ports:
+    - name: devportal-ui
+      port: 80
+      targetPort: "public-port"
+  selector:
+    app: "devportal"
+  type: LoadBalancer

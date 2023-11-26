@@ -1,0 +1,48 @@
+---
+kind: "Deployment"
+apiVersion: "apps/v1"
+metadata:
+  name: "msr"
+  namespace: "swag-infra"
+  labels:
+    app: "msr"
+spec:
+  selector:
+    matchLabels:
+      app: "msr" 
+  template: 
+    metadata:
+      labels:
+        app: "msr"
+    spec:
+      containers:
+        - name: "msr"
+          image: "sagcr.azurecr.io/webmethods-microservicesruntime:10.15"
+          ports:
+            - containerPort: 5555
+              name: "admin-port"
+          volumeMounts:
+            - name: license-volume
+              mountPath: /opt/softwareag/IntegrationServer/config/licenseKey.xml
+              subPath: licenseKey.xml
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: license-volume
+          configMap:
+            name: "msrlicense"
+  replicas: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "msr"
+  namespace: "swag-infra"
+spec: 
+  ports:
+    - name: admin-ui
+      port: 5555
+      targetPort: "admin-port"
+  selector:
+    app: "msr"
+  type: LoadBalancer
