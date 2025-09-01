@@ -3,7 +3,7 @@ kind: "Deployment"
 apiVersion: "apps/v1"
 metadata:
   name: "devportal"
-  namespace: "swag-infra"
+  namespace: "iwhi-infra"
   labels:
     app: "devportal"
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: "devportal"
-          image: "sagcr.azurecr.io/devportal:10.15"
+          image: "cp.icr.io/cp/webmethods/api/ibm-webmethods-developer-portal:11.1"
           ports:
             - containerPort: 8083
               name: "public-port"
@@ -32,7 +32,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: "devportal"
-  namespace: "swag-infra"
+  namespace: "iwhi-infra"
 spec: 
   ports:
     - name: devportal-ui

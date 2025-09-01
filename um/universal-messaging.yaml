@@ -3,7 +3,7 @@ kind: "Deployment"
 apiVersion: "apps/v1"
 metadata:
   name: "universal-messaging"
-  namespace: "swag-infra"
+  namespace: "iwhi-infra"
   labels:
     app: "universal-messaging"
 spec:
@@ -17,27 +17,19 @@ spec:
     spec:
       containers:
         - name: "universal-messaging"
-          image: "sagcr.azurecr.io/universalmessaging-server:10.15"
+          image: "cp.icr.io/cp/webmethods/universalmessaging/universalmessaging-server"
           ports:
             - containerPort: 9000
               name: "realm-port"
-          volumeMounts:
-            - name: license-volume
-              mountPath: /opt/softwareag/UniversalMessaging/server/umserver/licence/licence.xml
-              subPath: licence.xml
       imagePullSecrets:
         - name: regcred
-      volumes:
-        - name: license-volume
-          configMap:
-            name: "umlicense"
   replicas: 1
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: "um"
-  namespace: "swag-infra"
+  namespace: "iwhi-infra"
 spec: 
   ports:
     - name: um-realm
