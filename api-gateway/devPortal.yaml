@@ -22,8 +22,10 @@ spec:
             - containerPort: 8083
               name: "public-port"
           env:
-            - name: "SPRING_ELASTICSEARCH_REST_URIS"
+            - name: "PORTAL_DATASTORE_URIS"
               value: "http://elastic:9200"
+            - name: "PORTAL_DATASTORE_PASSWORD"
+              value: "Elastic_S3cret!"
       imagePullSecrets:
         - name: regcred
   replicas: 1
