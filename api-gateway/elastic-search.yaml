@@ -53,7 +53,7 @@ spec:
           persistentVolumeClaim:
             claimName: elastic-backup
       securityContext:
-        runAsUser: 1008
+        runAsUser: 1000800000
         fsGroup: 1000800000
   replicas: 1
 ---
