@@ -36,8 +36,6 @@ spec:
           volumeMounts:
             - name: elastic-volume
               mountPath: /usr/share/elasticsearch/data
-            - name: elastic-backup
-              mountPath: /usr/share/backup
           env:
             - name: "discovery.type"
               value: "single-node"
@@ -49,9 +47,6 @@ spec:
         - name: elastic-volume
           persistentVolumeClaim:
             claimName: elastic-storage
-        - name: elastic-backup
-          persistentVolumeClaim:
-            claimName: elastic-backup
       securityContext:
         runAsUser: 1000800000
         fsGroup: 1000800000
