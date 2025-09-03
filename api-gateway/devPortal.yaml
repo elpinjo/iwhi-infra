@@ -36,8 +36,23 @@ metadata:
 spec: 
   ports:
     - name: devportal-ui
-      port: 80
+      port: 8083
       targetPort: "public-port"
   selector:
     app: "devportal"
   type: LoadBalancer
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: dev-portal-ui
+  namespace: iwhi-infra
+spec:
+  host: dev-portal.apps.homelab.servers
+  path: /
+  to:
+    kind: Service
+    name: devportal
+  port:
+    targetPort: devportal-ui
+  wildcardPolicy: None

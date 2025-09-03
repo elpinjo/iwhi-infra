@@ -53,3 +53,20 @@ spec:
   selector:
     app: "apigateway"
   type: LoadBalancer
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: api-gateway-ui
+  namespace: iwhi-infra
+spec:
+  host: api-gateway.apps.homelab.servers
+  path: /
+  to:
+    kind: Service
+    name: apigateway-service
+    weight: 100
+  port:
+    targetPort: gateway-ui
+  wildcardPolicy: None
+
