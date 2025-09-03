@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: "elastic"
-          image: "docker.io/library/elasticsearch:8.2.3"
+          image: "docker.io/library/elasticsearch:8.12.2"
           ports:
             - containerPort: 9200
               protocol: "TCP"
