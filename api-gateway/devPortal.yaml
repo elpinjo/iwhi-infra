@@ -36,7 +36,7 @@ metadata:
 spec: 
   ports:
     - name: devportal-ui
-      port: 8083
+      port: 8080
       targetPort: "public-port"
   selector:
     app: "devportal"
