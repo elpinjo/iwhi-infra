@@ -30,8 +30,6 @@ spec:
           env:
             - name: "apigw_elasticsearch_hosts"
               value: "elastic:9200"
-            - name: "apigw_elasticsearch_http_password"
-              value: "Elastic_S3cret!"
       imagePullSecrets:
         - name: regcred
   replicas: 1
