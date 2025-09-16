@@ -21,6 +21,8 @@ spec:
           ports:
             - containerPort: 8080
               name: "public-port"
+            - containerPort: 8083
+              name: "public-https-port"
           env:
             - name: "SPRING_ELASTICSEARCH_URIS"
               value: "http://elastic:9200"
@@ -36,8 +38,11 @@ metadata:
 spec: 
   ports:
     - name: devportal-ui
-      port: 8080
+      port: 80
       targetPort: "public-port"
+    - name: devportal-ui-ssl
+      port: 443
+      targetPort: "public-https-port"
   selector:
     app: "devportal"
   type: LoadBalancer
