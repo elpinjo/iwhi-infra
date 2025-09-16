@@ -19,8 +19,10 @@ spec:
         - name: "devportal"
           image: "cp.icr.io/cp/webmethods/api/ibm-webmethods-developer-portal:11.1"
           ports:
+            - containerPort: 8080
+              name: "public-http-port"
             - containerPort: 8083
-              name: "public-port"
+              name: "public-https-port"
           env:
             - name: "SPRING_ELASTICSEARCH_URIS"
               value: "http://elastic:9200"
@@ -37,7 +39,10 @@ spec:
   ports:
     - name: devportal-ui
       port: 80
-      targetPort: "public-port"
+      targetPort: "public-http-port"
+    - name: devportal-ui-https
+      port: 443
+      targetPort: "public-https-port"
   selector:
     app: "devportal"
   type: LoadBalancer
