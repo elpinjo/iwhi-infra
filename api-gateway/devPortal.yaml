@@ -20,9 +20,9 @@ spec:
           image: "cp.icr.io/cp/webmethods/api/ibm-webmethods-developer-portal:11.1"
           ports:
             - containerPort: 8080
-              name: "public-http-port"
+              name: "public-http"
             - containerPort: 8083
-              name: "public-https-port"
+              name: "public-https"
           env:
             - name: "SPRING_ELASTICSEARCH_URIS"
               value: "http://elastic:9200"
