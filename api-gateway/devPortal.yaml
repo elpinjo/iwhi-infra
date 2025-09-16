@@ -39,10 +39,10 @@ spec:
   ports:
     - name: devportal-ui
       port: 80
-      targetPort: "public-http-port"
+      targetPort: "public-http"
     - name: devportal-ui-https
       port: 443
-      targetPort: "public-https-port"
+      targetPort: "public-https"
   selector:
     app: "devportal"
   type: LoadBalancer
