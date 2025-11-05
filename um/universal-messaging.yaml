@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: "universal-messaging"
-          image: "cp.icr.io/cp/webmethods/universalmessaging/universalmessaging-server"
+          image: "cp.icr.io/cp/webmethods/universalmessaging/universalmessaging-server:11.1.2"
           ports:
             - containerPort: 9000
               name: "realm-port"
